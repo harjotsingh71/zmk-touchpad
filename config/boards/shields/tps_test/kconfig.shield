@@ -1,2 +1,0 @@
-config SHIELD_TPS_TEST
-    def_bool $(shields_list_contains,tps_test)
