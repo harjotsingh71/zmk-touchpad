@@ -35,14 +35,14 @@
 };
 
 &pinctrl {
-    i2c0_default: i2c0_default {
+    custom_i2c0_default: custom_i2c0_default {
         group1 {
             psels = <NRF_PSEL(TWIM_SDA, 0, 31)>, 
                     <NRF_PSEL(TWIM_SCL, 0, 29)>;
             bias-pull-up; 
         };
     };
-    i2c0_sleep: i2c0_sleep {
+    custom_i2c0_sleep: custom_i2c0_sleep {
         group1 {
             psels = <NRF_PSEL(TWIM_SDA, 0, 31)>,
                     <NRF_PSEL(TWIM_SCL, 0, 29)>;
@@ -53,13 +53,13 @@
 
 &i2c0 {
     status = "okay";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-0 = <&custom_i2c0_default>;
+    pinctrl-1 = <&custom_i2c0_sleep>;
     pinctrl-names = "default", "sleep";
 
     trackpad: iqs5xx@44 {
         compatible = "azoteq,iqs5xx";
         reg = <0x44>;
-        int-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; 
+        rdy-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; 
     };
 };
