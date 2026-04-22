@@ -58,7 +58,7 @@
     pinctrl-names = "default", "sleep";
 
     trackpad: iqs5xx@44 {
-        compatible = "azoteq,iqs5xx";
+        compatible = "azoteq,iqs5xx"; /* ZMK recognizes this via the pointing module */
         reg = <0x44>;
         dr-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; 
     };
