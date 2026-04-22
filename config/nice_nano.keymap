@@ -56,6 +56,7 @@
     pinctrl-0 = <&custom_i2c0_default>;
     pinctrl-1 = <&custom_i2c0_sleep>;
     pinctrl-names = "default", "sleep";
+    clock-frequency = <100000>;
 
     trackpad: iqs5xx@44 {
         compatible = "azoteq,iqs5xx";
