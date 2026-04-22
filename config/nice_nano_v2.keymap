@@ -2,6 +2,37 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix-transform = &default_transform;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <1>;
+        rows = <1>;
+        map = <RC(0,0)>;
+    };
+
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* Spoof a single key on an unused pin */
+    };
+
+    trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad>;
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <&kp A>;
+        };
+    };
+};
+
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
@@ -29,19 +60,5 @@
         compatible = "azoteq,iqs5xx";
         reg = <0x44>;
         dr-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; 
-    };
-};
-
-/ {
-    trackpad_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackpad>;
-    };
-
-    keymap {
-        compatible = "zmk,keymap";
-        default_layer {
-            bindings = <&kp A>;
-        };
     };
 };
